@@ -2,20 +2,16 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-const { body,validationResult } = require("express-validator");
+var GenreSchema = new Schema({
+    name: {type: String, required: true, minLength: 3, maxLength: 100}
+});
 
-var GenreSchema = new Schema(
-  {
-    name: {type: String, required: true, maxLength: 100, minLength: 3}
-  }
-);
-
-// Virtual for bookinstance's URL
+// Virtual for this genre instance URL.
 GenreSchema
 .virtual('url')
 .get(function () {
-  return '/catalog/bookinstance/' + this._id;
+  return '/catalog/genre/'+this._id;
 });
 
-//Export model
+// Export model.
 module.exports = mongoose.model('Genre', GenreSchema);
