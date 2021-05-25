@@ -1,0 +1,9 @@
+
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://user0:57426674@cluster0.baj6q.mongodb.net/local_library?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+  const collection = client.db("local_library").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
